@@ -1,0 +1,4 @@
+querySelector apko keval ek single element select krke dega lekin agar aapko saare element chahiye toh apko use krna padega querySelectorAll ye aapko ek nodelist provide krega like NodeList[3] nodelist array nhi hai isme aapko map vagarh nhi milega toh direct aap const var = NodeList.style.color = "green" krenge toh ye nhi chalega
+
+aapko specify krna padega ki konse no. ke element pr aap vo operation perform krna chahte hai
+like NodeList[0].style.color = " blue"

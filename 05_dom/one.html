@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .bg-black{
+        background-color: black;
+        color: white;
+    }
+    .topG{
+        background-color: black;
+    }
+</style>
+</head>
+
+<body id = "topG">
+    <div class = 'bg-black'>
+        <h1>Chai and Code</h1>
+        <h1>DOM Manipulation with javascript</h1>
+
+    </div>
+</body>
+</html>
+// class.innerText aur class.textContent mai innetText keval vahi content dega jo user ko visible hoga agar kisi text ko style ki madad se hta diya hai display none krke toh vo visible nhi hoga jabki textContent mai saara text visible hoga chahe vo styles ki madad se hta hi kyu na rakha hoga
+
+innerHTML mai agar koi tag bhi hai toh vo bhi milenge saath mai example :
+'chai and code <span>test text</span>'
+
+// querySelector aapko jis type ka aap element choose kroge uska pehla instance laake dega
+document.querySelector('h1') -> ye aapko document ka pehla h1 tag laake dega
+const turnGreen = document.querySelector('ul')
+
+agar kisi variable ki css change krni hai toh vo kaise krenge yaha turnGreen.style.backgroundColor = "green"
