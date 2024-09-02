@@ -2,3 +2,5 @@ querySelector apko keval ek single element select krke dega lekin agar aapko saa
 
 aapko specify krna padega ki konse no. ke element pr aap vo operation perform krna chahte hai
 like NodeList[0].style.color = " blue"
+
+#jab document.getElementsByClassName krenge toh return mai hame ke HTMLCollection milega isme na toh foreach loop laga skte na isme map ka option hota jaise array mai hota hai toh agar map ya array ka koi function use krna hai ispr toh pehle ise array mai convert krna padega uske liye simple  sa function hota Array.from(tempClassList);
