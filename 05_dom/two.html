@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai and Code</title>
+</head>
+<body style="background-color: black; color: white">
+    <div class="parent" >
+        <!-- this is a comment -->
+    <div class="day">Monday</div>
+    <div class="day">Tuesday</div>
+    <div class="day">Wednesday</div>
+    <div class="day">Thursday</div> 
+    </div>
+    
+</body>
+<script>
+    const parent = document.querySelector('.parent');
+    console.log(parent);
+    //ek dusri interesting property hai parent.children jo return krti hai ki parent k kitne chidlren hai
+    console.log(parent.children);
+    // iss property se mila hme HTML Collection ye property aage jaake kaafi kaam aayegi
+
+    // ab array like hai toh for loop toh laga hi sakte hai
+    // for(let i=0;i< parent.children.length; i++){
+    //     console.log(parent.children[i].innerHTML);
+    // }
+
+    // iss parent k saath hame kuch impo properties bhi milti hai jaise 
+    // chahe toh isme styles vagarh bhi change kr skte
+    parent.children[0].style.color = "orange";
+    // console.log(parent.firstElementChild);
+
+    //same as lastElementChild ko bhi access kr skte ye toh hua parent se children tak jaane ka hame ulta bhi kr skte
+    // yani child se parent , kr toh querySelector se bhi skte hai lekin dhyan rahe ki query Selector ek expensive operation hai KYUKI isme poora tree traversal hi kr rhe hai, lekin hme agr bs child se parent tak hi jaana hai toh firse poora tree kyu traverse kiya jaaye? toh vo direct ham parentElement likh k kr skte hai
+
+    // similarly nextElementSibling par bhi jaa skte iss method se
+    const dayOne = document.querySelector('.day');
+    // console.log(dayOne.innerHTML);
+    // console.log(dayOne.parentElement);
+
+    // ek isme boht hi important property hoti hai jisko boltes hai childNodes agar consolelog krte hai ise
+    console.log("NODES :" , parent.childNodes)
+    // toh result mai hame milti hai ek nodeList but the interesting thing is that this NodeLIst contains 9 elements but we thought there will be only 4 of them as it only have 4 children in its div 
+    // ye sab isliye kyuki java script bts kaafi complex tree structures create krti hai toh jo line break bhi de rhe hai enter maarke vo bhi nodeList mai count hota hai
+</script>
+</html>
