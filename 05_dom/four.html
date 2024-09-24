@@ -1,0 +1,57 @@
+<!-- edit and remove elements in DOM              -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai and Code (^^)</title>
+</head>
+<body style = "background-color: #212121;color: #fff">
+    <ul class = "language">
+        <li>
+            JavaScript
+        </li>
+    </ul>
+    
+</body>
+<script>
+    function addLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`;
+        const parent = document.querySelector('.language');
+        parent.appendChild(li); 
+    }
+    addLanguage("python")
+    addLanguage("c++")
+
+    // ye funct theek hai aur chal bhi jaayega lekin agar hamare List item 1000 hue ya lakh hue toh uss case mai problem aayegi kyukiinnerHTML ki vajah se ham pura tree traverse krte hue jaa toh bilkul aakhir mai hi rhe hai toh ek dusra optimised method hota hai jisme ham DSA ka use krte hai
+
+    function addLanguageOptimised(langName){
+        const li =document.createElement('li')
+        // yaha par dusra wala method use kr rhe jisme doc.createTextNode krke usko append krte hai isse direct textNode create hogi usko li mai append kr denge
+        li.appendChild(document.createTextNode(langName))
+    }
+
+    // ye baat toh hogyi values create krne ki lekin hame values ko ab edit krna hai
+    // EDIT
+    // querySelector boht powerful selector hai isme ham css selectors use kr skte hai jquery k selectors use kr skte hai,filhall list mai se ek element ko hata kr uski jagah dusra eleemnt daal rhe hai
+    const secondLang =document.querySelector("li:nth-child(2)")
+    // jo list k n childs hai unme se 2 ko select kro
+    const li = document.createElement('li')
+    li.textContent ="C-Sharp"
+    //edit krne k liye use krenge alag function ka jo hai replaceWith
+    secondLang.replaceWith(li)
+
+    //replace krne ka ek dusra tarika bhi ho skta hai
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = '<li>TypeScript</li>'
+
+    // Selector mai li: k baad space nhi dena hai agar space diya toh fir nhi chalega
+
+    //removal 
+    const lastLang = document.querySelector('li:last-child')
+    lastLang.remove()
+
+    //takeaway from lecture for practicing more selectors refet to w3schools
+</script>
+</html>
