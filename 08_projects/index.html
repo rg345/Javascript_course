@@ -1,0 +1,134 @@
+<!--
+Here’s a breakdown of the terms you've mentioned, commonly used in JavaScript, especially in event handling:
+
+1.type:
+
+This property returns the type of event (e.g., click, keydown, mouseover).
+Example: event.type will return 'click' if a click event occurred.
+
+2.timestamp:
+
+This property returns the time (in milliseconds) at which the event was created. It helps in tracking when an event occurred.
+Example: event.timestamp could return 1626873245321.
+
+3.defaultPrevented:
+
+A boolean property that indicates whether the event's default behavior has been prevented.
+Example: event.defaultPrevented returns true if event.preventDefault() has been called to prevent the default action.
+
+4.target:
+
+This property returns a reference to the element that triggered the event (the originating element).
+Example: event.target could refer to a button if that button was clicked.
+
+5.toElement (Deprecated):
+
+This property is used during a mouseover or mouseout event and refers to the element the pointer is moving to.
+Example: event.toElement during a mouseout event tells which element the mouse is moving toward.
+
+6.srcElement (Deprecated):
+
+Similar to target, it returns the element that initiated the event. It's the older version of target but still supported in some browsers.
+Example: event.srcElement.
+
+7.currentTarget:
+
+This returns the element that is currently handling the event. It can differ from target if event delegation is used.
+Example: event.currentTarget could be the parent element if event delegation is used, even if a child element triggered the event.
+
+8.clientX & clientY:
+
+These properties return the horizontal (clientX) and vertical (clientY) coordinates of the mouse pointer relative to the visible part of the web page (the viewport).
+Example: event.clientX returns the X-coordinate, and event.clientY returns the Y-coordinate.
+
+9.screenX & screenY:
+
+These properties return the horizontal (screenX) and vertical (screenY) coordinates of the mouse pointer relative to the user's screen.
+Example: event.screenX gives the X-coordinate on the screen.
+
+10.altKey, ctrlKey, shiftKey:
+
+These boolean properties indicate whether the Alt, Ctrl, or Shift key was pressed during the event.
+Example: event.altKey will return true if the Alt key was pressed during a click or keyboard event.
+
+11.keyCode (Deprecated):
+
+This property returns the numeric code of the key pressed. It's deprecated in favor of event.code or event.key.
+Example: event.keyCode could return 13 for the Enter key.
+
+These properties help track various aspects of user interactions with the page, such as mouse clicks, key presses, and the specific elements involved in those interactions.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events </title>
+</head>
+<body style="background-color: #000000; color: #ffffff;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+//kisi image pr agar koi event lagana hai toh uske kaafi tarike hai, (sbse kharab se shuru krenge aur end wala sabse best hoga)
+//1. img wale tag mai hi event laga de alt k side mai alt=" " onclick = alert("photo clicked"), leking ye wala option bilkul bhi scalable nhi hai, jab codebase ko scale krenge toh ye dikkat dega, ye practice js mai prefer nhi ki jaati, lekin react mai aise hi kiya jaata hai, vahan ki cheeze alag hai thodi  onclick ="alert('clicked')
+
+//2. second hai, pehle element ko select krke phir uspr click action wala lagaye, 
+// document.querySelector('#owl').onclick = function(){alert('owl clicked')}, onlick event se problem ho skti hai , kyuki event listneres apko na keval onclick but propagation ki bhi ability dete hai
+// document.getElementById('owl').onclick = function(){
+//     alert('owl photo clicked')
+// }
+
+//3. Jo most preferred way hai woh hai using addEventListener, addEventListener se hame extra features milte hai jo directly select krne pr nhi milte,normally toh event listeners mai 2 params pass kre jaate hai, konsa event listen krna hai aur uspe action kya lena hai? ek 3 param bhi hota hai jo by defautl false hota hai lekin usko kab true rakhna hai ya kab false rkhna hai ye bhi important hai
+
+
+// ab aata hai ek bada hi impo concept event bubbling and event capturing , yaha kaam ata hai vo 3rd param jiski baat ham upar kr rhe the, 
+
+document.getElementById('images').addEventListener('click', function(e){
+    console.log(e.screenX);
+    console.log(e.clientX);
+    console.log('clicked inisde images')
+},false)
+// document.getElementById('owl').addEventListener('click',function(e){
+//     console.log('owl photo clicked');
+//     e.stopPropagation()
+// },false)
+//kyuki owl wali image bhi images id ke andar hi h toh pehle konsa event hona chahiye, toh ham dekhte h ki pehle owl wala alert aata hai toh ji ab aisa kyun? kyuki by default event bubbling hoti hai yani bottom to top i.e. pehle inside element pr koi event listener hoga toh pehle vo fir kisi ul pr hoga vo aur end mai body pr koi hoga toh fir vo
+
+//agar 3rd param ki value true kr denge toh dekhenge ki ab top to bottom follow ho raha hai yani event capturing ho rhi hai , yahi khel hai event propogation ka
+
+// agar ham chahte hai ki hamara event bubble hoke upar wale event pr na jaye toh iska bhi method hota hai jisko bolte hai event.stopPropagation(), lekin ye kaam tabhi krega jab 3rd param ki value false hogi
+
+// document.getElementById('google').addEventListener('click',function(e){
+//     e.preventDefault()
+//     e.stopPropagation()
+//     console.log('google clicked')
+// })
+
+document.querySelector('#images').addEventListener('click', function(e){
+    // console.log(e)
+    // console.log(e.target)
+    // console.log(e.target.parentNode)
+    //2 ways to remove child
+    let removeIt = e.target.parentNode
+    removeIt.remove()
+    // upar wale method mai ek problem ye hai ki agar google wale pr click krenge toh poora ul hi gayab ho jaayega , kyuki google khud ek list element hai uska parent ul , toh isse bachne k liye check laga skte
+    if(e.target.tagName === 'IMG'){
+        // tabhi vo remove wala operation krenge
+    }
+
+    // 2nd method
+    removeIt.parentNode.removeChild(removeIt)
+})
+</script>
+</html>
