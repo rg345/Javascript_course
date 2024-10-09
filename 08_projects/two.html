@@ -9,7 +9,27 @@
     <h1>Learning Async JS</h1>
     <button id = "stop"> Stop</button>
 </body>
+<!-- set interval aur setTimeout jaise func default JS k part nhi hai vo browser ya runtime env ki functionality hai, toh jab JS unko call krta hai toh through web APIs unko call jaati hai, jo fir se ghoom k js engine mai aati hai fir -->
 <script>
-    setInte
+    const changeText = setTimeout(function(){
+        document.querySelector('h1').innerHTML = " This text has been changed by the setTimout method";
+    },2000)
+
+    //setTimeout wala likhte waqt wo handler maangta hai apne brackets mai as parameter, toh agar kisi function ko execute krwana hai toh uska reference pass krna hai uss bracket k andar along with the time ,
+    const greeting = function(){
+        console.log("Good Night");
+    }
+    setTimeout(greeting, 2000)
+
+    // agar koi cheez change bhi krni hai toh usko bhi similarly change kr skte , jaise agar heading change krni toh usko likh skte document.querySelector('h1').innerHTML = "This text has been updated with the setInterval function"
+
+    // ye saari baat toh hui setTimeout jaise function ko lagane ki agar mujhe hatana hai toh uska method bhi toh pata hona chahiye , agar mai us event ko hone se pehle rokna chahta hun ya koi error aa jata hai jisme uss event ko rokna hai toh vo kaise krenge
+
+    // toh rokne k liye function hota hai usko bolte hai clearTimeout , isme jis setTimeout ko rokna chahte hai uska reference pass krna padega, lekin agar direct clearTimeout likh denge toh fir pehle setTimeout likne ka fayda kya hua kyuki fir vo use hone nhi dega, toh isse acha ye ki ham clearTimeout kisi event pr laga dete.
+
+    document.querySelector('#stop').addEventListener('click',function(){
+        clearTimeout(changeText)
+        console.log("STOPPEd ")
+    })
 </script>
 </html>
