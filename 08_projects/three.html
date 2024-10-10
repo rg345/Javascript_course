@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async JS</title> 
+</head>
+<body>
+    <h1>Learning SetInterval Option</h1>
+
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+</body>
+
+<script>
+    const change = function(str) {
+        console.log(str, Date.now());
+    }
+
+    let intervalId; // Declare a variable to store the interval ID
+
+    document.querySelector('#start').addEventListener('click', function() {
+        // Clear any existing interval before starting a new one
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+        intervalId = setInterval(change, 2000, "Rohit");
+    });
+
+    document.getElementById('stop').addEventListener('click', function() {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null; // Reset the intervalId
+        }
+    });
+</script>
+</html>
+ <!--  setInterval wale mai 3 parameter pass krte , ek toh function jisko call kr rhe, fir time interval jiske baad usko repeat krwana hai and 3rd agar main function mai kuch parameter pass kr rhe toh vo bhi pass kr skte -->
