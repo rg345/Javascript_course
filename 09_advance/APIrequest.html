@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <style>
+    #card{
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s
+    }
+
+    .container{
+        padding: 2px 16px
+    }
+</style> -->
+<body>
+    <!-- <div id = "card">
+        <img src ="avatar.png" style = "width:100%">
+        <div class = "container">
+            <h4>Mr EX</h4>
+            <p>Engineer by mistake</p>
+        </div>
+    </div> -->
+   
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl)
+    xhr.onreadystatechange = function(){
+       const data = xhr.data;
+       console.log(data)
+    }
+    xhr.send();
+</script>
+
+</html>
